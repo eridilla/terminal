@@ -1,3 +1,11 @@
+def tree(currentFolder, tabs, row):
+    for obj in currentFolder.content:
+        if type(obj) is File:
+            print(str(row * "|" + tabs * "_" + obj.name))
+        elif type(obj) is Folder:
+            print(str(row * "|" + tabs * "_" + obj.name))
+            tree(obj, tabs+1, 1)
+
 class File:
     def __init__(self, name, owner, permissions):
         self.name = name
@@ -216,6 +224,8 @@ while (True):
 
                     if not found:
                             print("chyba")
+    elif command[0] == "tree":
+        tree(currentFolder, 0, 0)
     elif command[0] == "quit":
         exit(0)
     else:
